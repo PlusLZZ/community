@@ -1,5 +1,6 @@
 package lzz.blog.community.community.service;
 
+import lzz.blog.community.community.dto.PageutilDTO;
 import lzz.blog.community.community.dto.QuestionDTO;
 import lzz.blog.community.community.mapper.QuestionMapper;
 import lzz.blog.community.community.mapper.UserMapper;
@@ -20,9 +21,15 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public List<QuestionDTO> list() {
-        List<Question> questions = questionMapper.list();
+    public PageutilDTO list(Integer page, Integer size) {
+        PageutilDTO pageutilDTO = new PageutilDTO();
+        Integer totalCount = questionMapper.count();
+        pageutilDTO.setPageView(totalCount, page, size);
+        //分页参数
+        Integer offset = size * (pageutilDTO.getPage() - 1);
+        List<Question> questions = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<QuestionDTO>();
+
         for (Question question : questions) {
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
@@ -30,6 +37,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+        pageutilDTO.setQuestions(questionDTOList);
+        return pageutilDTO;
     }
 }
