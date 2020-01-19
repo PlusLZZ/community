@@ -1,0 +1,2 @@
+ALTER TABLE USER ADD avatar_url VARCHAR(100) NULL;
+COMMENT ON COLUMN USER.avatar_url IS '头像路径';
