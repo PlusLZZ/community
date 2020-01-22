@@ -17,7 +17,6 @@
 </head>
 <body>
 <div th:insert="~{footer::copy}"></div>
-
 <div class="container-fluid main profile">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -28,17 +27,38 @@
                     阅读数:<span th:text="${question.viewCount}"></span>
                 </span>
             <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"></div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a class="community-menu" th:href="@{'/publish/'+${question.id}}"
+               th:if="${session.user!=null&&session.user.id==question.creator}">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                编辑
+            </a>
+
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>发起人</h4>
+                <h4><strong>发起人</strong></h4>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object image_width img-circle" th:src="${question.user.avatarUrl}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="media-heading">
+                            <span th:href="@{'/question/'+ ${question.id}}" th:text="${question.user.name}">
+                            </span>
+                        </h6>
+                    </div>
+                </div>
             </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>相关问题</h4>
+                <h4><strong>相关问题</strong></h4>
             </div>
         </div>
-
     </div>
-
+</div>
 </body>
 </html>

@@ -11,3 +11,10 @@
             <optional>true</optional>
         </dependency>
  在设置里面更改compiler 的选项,勾选自动构建,按住ctrl+shift+alt+?可以打开注册,勾选compiler.automake.allow.when.app.running
+
+数据库版本迁移 mvn flyway:migrate
+mybatis xml配置 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+h2数据库迁移时设置账号密码
+create user if not exists sa password '123';
+alter user sa admin true;
+[POSTMAN](https://chrome.google.com/webstore/detail/coohjcphdfgbiolnekdpbcijmhambjff)
