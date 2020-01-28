@@ -32,4 +32,8 @@
   where id=#{id}
 </update>
 
+    <select id="selectRelated" parameterType="lzz.blog.community.community.model.Question" resultMap="BaseResultMap">
+       select * from QUESTION where ID!=#{id} and tag regexp #{tag}
+    </select>
+
 </mapper>
