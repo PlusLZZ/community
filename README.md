@@ -29,3 +29,7 @@ alter user sa admin true;
 ##步骤
 1. yum update更新Centenos
 2. yum install git 安装git
+3. mkdir App
+4. cd App
+5. git clone https://github.com/LZZ-MZ/community.git
+6.
