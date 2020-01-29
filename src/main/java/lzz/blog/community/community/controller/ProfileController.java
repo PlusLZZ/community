@@ -31,7 +31,7 @@ public class ProfileController {
                           Model model,
                           HttpServletRequest request,
                           @RequestParam(name = "page", defaultValue = "1") Integer page,
-                          @RequestParam(name = "size", defaultValue = "5") Integer size) {
+                          @RequestParam(name = "size", defaultValue = "7") Integer size) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             return "redirect:/";
@@ -42,7 +42,7 @@ public class ProfileController {
             PageutilDTO pageutilDTO = questionService.list(user.getId(), page, size);
             model.addAttribute("pageutilDTO", pageutilDTO);
         } else if ("replies".equals(action)) {
-            PageutilDTO pageutilDTO = notificationService.list(user.getId(), page, size);
+            PageutilDTO pageutilDTO = notificationService.list(user.getId(), page, 10);
             model.addAttribute("pageutilDTO", pageutilDTO);
             model.addAttribute("section", "replies");
             model.addAttribute("sectionName", "最新回复");

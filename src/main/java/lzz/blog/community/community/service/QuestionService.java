@@ -2,6 +2,7 @@ package lzz.blog.community.community.service;
 
 import lzz.blog.community.community.dto.PageutilDTO;
 import lzz.blog.community.community.dto.QuestionDTO;
+import lzz.blog.community.community.dto.QuestionQueryDTO;
 import lzz.blog.community.community.exception.CustomizeErrorCode;
 import lzz.blog.community.community.exception.CustomizeException;
 import lzz.blog.community.community.mapper.QuestionExtMapper;
@@ -32,15 +33,36 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    public PageutilDTO list(Integer page, Integer size) {
+    public PageutilDTO list(String search, Integer page, Integer size) {
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+
+
         PageutilDTO pageutilDTO = new PageutilDTO();
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+
+
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
+
+
         pageutilDTO.setPageView(totalCount, page, size);
         //分页参数
         Integer offset = size * (pageutilDTO.getPage() - 1);
         QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
+        questionExample.setOrderByClause("gmt_modified desc");
+
+
+/*
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+*/
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
+
+
         List<QuestionDTO> questionDTOList = new ArrayList<QuestionDTO>();
 
         for (Question question : questions) {

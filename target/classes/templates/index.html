@@ -54,27 +54,27 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination pagination-lg">
                     <li th:if="${pageutilDTO.showFirstPage}">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a th:href="@{/(page=1,search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${pageutilDTO.showPrevious}">
-                        <a th:href="@{/(page=${pageutilDTO.page-1})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pageutilDTO.page-1},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <li th:each="page:${pageutilDTO.pages}" th:class="${pageutilDTO.page==page}?'active':''">
-                        <a th:href="@{/(page=${page})}" th:text="${page}">
+                        <a th:href="@{/(page=${page},search=${search})}" th:text="${page}">
 
                         </a>
                     </li>
                     <li th:if="${pageutilDTO.showNext}">
-                        <a th:href="@{/(page=${pageutilDTO.page+1})}" aria-label="Next">
+                        <a th:href="@{/(page=${pageutilDTO.page+1},search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="${pageutilDTO.showEndPage}">
-                        <a th:href="@{/(page=${pageutilDTO.totalPage})}" aria-label="Next">
+                        <a th:href="@{/(page=${pageutilDTO.totalPage},search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -83,10 +83,32 @@
 
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>&nbsp;&nbsp;<strong>热门话题</strong></h3>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="padding-top: 20px">
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 站长QQ</strong>
+                </h3>
+                <img class="img-thumbnail" style="width: 200px" src="/image/qq.jpg"/>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 style="padding-top: 20px">
+                <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 建站工具</strong>
+            </h3>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group">
+                <a target="_blank" href="https://docs.spring.io/spring-boot/docs/current/reference/html/index.html"
+                   class="list-group-item list-group-item-success">Spring Boot官方文档</a>
+                <a target="_blank"
+                   href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.2432675.2432675.2432675&utm_medium=cpc&utm_id=gwzcw.2432675.2432675.2432675"
+                   class="list-group-item list-group-item-info">腾讯云学生服务器</a>
+                <a target="_blank" href="https://v3.bootcss.com/" class="list-group-item list-group-item-warning">BootStrap前端UI组件</a>
+                <a target="_blank" href="https://github.com/LZZ-MZ" class="list-group-item list-group-item-danger">站长GitHub</a>
+            </div>
+
         </div>
     </div>
 </div>
+
+<div th:insert="~{end::end}"></div>
 
 </body>
 </html>

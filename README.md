@@ -19,3 +19,13 @@ create user if not exists sa password '123';
 alter user sa admin true;
 [POSTMAN](https://chrome.google.com/webstore/detail/coohjcphdfgbiolnekdpbcijmhambjff)
 [markdown编辑器](https://pandao.github.io/editor.md/)
+
+##部署
+###依赖
+-- Git
+-- JDK
+-- Maven
+-- MySql
+##步骤
+1. yum update更新Centenos
+2. yum install git 安装git
