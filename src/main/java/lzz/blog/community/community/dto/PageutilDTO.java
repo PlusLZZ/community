@@ -30,6 +30,9 @@ public class PageutilDTO<T> {
         if (page > totalPage) {
             page = totalPage;
         }
+        if (page < 1) {
+            page = 1;
+        }
         this.page = page;
         pages.add(page);
         for (int i = 1; i <= 3; i++) {
