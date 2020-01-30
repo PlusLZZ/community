@@ -10,7 +10,7 @@ create table notification
 	constraint notification_pk
 		primary key (id)
 );
-
+/*
 comment on column notification.notifler is '通知人';
 
 comment on column notification.receiver is '接受消息的人';
@@ -19,4 +19,4 @@ comment on column notification.outerId is '接收类型Id';
 
 comment on column notification.type is '接受类型';
 
-comment on column notification.status is '状态';
+comment on column notification.status is '状态';*/
