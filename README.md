@@ -32,4 +32,12 @@ alter user sa admin true;
 3. mkdir App
 4. cd App
 5. git clone https://github.com/LZZ-MZ/community.git
-6.
+6. yum install maven  安装maven的时候自动把java安装了
+7. mvn -v
+8. mvn clean compile package
+9  cp src/main/resources/application.properties src/main/resources/application-production.properties
+10. vim src/main/resources/application-production.properties
+11. java -jar -Dspring.profiles.active=production target/community-0.0.1-SNAPSHOT.jar
+12. # ps -ef |grep java   ps -ef|grep java|grep -v grep
+13. jdbc:mysql://cdb-1akego1w.cd.tencentcdb.com:10070/blog
+com.mysql.jdbc.Driver
