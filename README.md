@@ -41,3 +41,4 @@ alter user sa admin true;
 12. # ps -ef |grep java   ps -ef|grep java|grep -v grep
 13. jdbc:mysql://cdb-1akego1w.cd.tencentcdb.com:10070/blog
 com.mysql.jdbc.Driver
+14. mvn clean compile flyway:migrate
