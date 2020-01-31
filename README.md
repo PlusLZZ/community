@@ -42,3 +42,4 @@ alter user sa admin true;
 13. jdbc:mysql://cdb-1akego1w.cd.tencentcdb.com:10070/blog
 com.mysql.jdbc.Driver
 14. mvn clean compile flyway:migrate
+git fetch --all && git reset --hard origin/master && git pull
